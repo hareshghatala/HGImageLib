@@ -23,21 +23,16 @@ class ImageCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        // cancel async image loading
+        self.imageView.hg_cancelImageRequest()
         self.imageView.layer.removeAllAnimations()
         self.imageView.image = nil
     }
     
     // MARK: - Helper methods
     
-    func configureCell(with URLString: String, placeholderImage: UIImage) {
-        self.imageView.image = placeholderImage
-//
-//        guard let imgUrl = URL(string: URLString) else {
-//            self.imageView.image = placeholderImage
-//            return
-//        }
-        
-        // code to async image loading
+    func configureCell(with imgURL: URL, placeholderImage: UIImage) {
+        self.imageView.hg_setImage(withURL: imgURL,
+                                   placeholderImage: placeholderImage,
+                                   imageTransition: .flipFromLeft(0.4))
     }
 }

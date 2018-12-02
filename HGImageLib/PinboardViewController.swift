@@ -12,30 +12,63 @@ class PinboardViewController: UIViewController {
 
     // MARK: Private Variables
     
-    private lazy var imgURLs: [String] = ["https://images.unsplash.com/photo-1464550883968-cec281c19761",
-                                          "https://images.unsplash.com/photo-1464550838636-1a3496df938b",
-                                          "https://images.unsplash.com/photo-1464537356976-89e35dfa63ee",
-                                          "https://images.unsplash.com/photo-1464550883968-cec281c19761",
-                                          "https://images.unsplash.com/photo-1464550838636-1a3496df938b",
-                                          "https://images.unsplash.com/photo-1464537356976-89e35dfa63ee",
-                                          "https://images.unsplash.com/photo-1464550883968-cec281c19761",
-                                          "https://images.unsplash.com/photo-1464550838636-1a3496df938b",
-                                          "https://images.unsplash.com/photo-1464537356976-89e35dfa63ee"]
-    private lazy var placeholderImage = UIImage(named: "placeholder")!
     private static let collectionViewCellSpace: CGFloat = 2.0
     private static let collectionViewCellPerRowiPhone: CGFloat = 2.0
     private static let collectionViewCellMarginColumniPhone: CGFloat = 3.0
     private static let collectionViewCellPerRowiPad: CGFloat = 3.0
     private static let collectionViewCellMarginColumniPad: CGFloat = 4.0
+    private static let dataURLString = "https://pastebin.com/raw/wgkJgazE"
+    
+    private lazy var placeholderImage = UIImage(named: "placeholder")!
+    private lazy var imgURLs: [DataModel] = []
+    private lazy var refresher: UIRefreshControl = UIRefreshControl()
     
     // MARK: Outlets
 
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView! {
+        didSet {
+            self.refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+            self.collectionView.addSubview(refresher)
+        }
+    }
     
     // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.getRequestAPICall()
+    }
+    
+    private func getRequestAPICall()  {
+        
+        HGNetworkLib.performGet(with: type(of: self).dataURLString) { response, error in
+            
+            if let error = error {
+                debugPrint(error.localizedDescription)
+            } else if let data = response as? [[String : AnyObject]] {
+                self.imgURLs.removeAll()
+                
+                for element in data {
+                    guard let allUrls = element["urls"] as? [String: Any],
+                        let regularUrl = allUrls["regular"] as? String else {
+                            continue
+                    }
+                    
+                    let dataModel = DataModel(imageURLString: regularUrl)
+                    self.imgURLs.append(dataModel)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.refresher.endRefreshing()
+            }
+        }
+    }
+    
+    @objc private func refreshData() {
+        getRequestAPICall()
     }
     
     fileprivate func sizeForCollectionViewItem() -> CGSize {
@@ -51,7 +84,6 @@ class PinboardViewController: UIViewController {
             cellWidth = (viewWidth - margin) / selfType.collectionViewCellPerRowiPad
         }
         
-        debugPrint("Size: \(cellWidth):\(cellWidth)")
         return CGSize(width: cellWidth, height: cellWidth)
     }
 }
@@ -70,8 +102,8 @@ extension PinboardViewController : UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let imgUrlString = imgURLs[indexPath.row]
-        cell.configureCell(with: imgUrlString, placeholderImage: placeholderImage)
+        let dataModel = imgURLs[indexPath.row]
+        cell.configureCell(with: dataModel.getURL(), placeholderImage: placeholderImage)
 
         return cell
     }
