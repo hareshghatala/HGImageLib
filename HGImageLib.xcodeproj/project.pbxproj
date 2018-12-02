@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6E3EA07D21B40CD600A3FE19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA07C21B40CD600A3FE19 /* AppDelegate.swift */; };
-		6E3EA07F21B40CD600A3FE19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA07E21B40CD600A3FE19 /* ViewController.swift */; };
 		6E3EA08221B40CD600A3FE19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E3EA08021B40CD600A3FE19 /* Main.storyboard */; };
 		6E3EA08421B40CDD00A3FE19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E3EA08321B40CDD00A3FE19 /* Assets.xcassets */; };
 		6E3EA08721B40CDD00A3FE19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E3EA08521B40CDD00A3FE19 /* LaunchScreen.storyboard */; };
 		6E3EA09221B40CDE00A3FE19 /* HGImageLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA09121B40CDE00A3FE19 /* HGImageLibTests.swift */; };
+		6E3EA0A221B429B800A3FE19 /* PinboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA0A121B429B800A3FE19 /* PinboardViewController.swift */; };
+		6E3EA0A521B4337700A3FE19 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA0A421B4337700A3FE19 /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +29,6 @@
 /* Begin PBXFileReference section */
 		6E3EA07921B40CD600A3FE19 /* HGImageLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGImageLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E3EA07C21B40CD600A3FE19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6E3EA07E21B40CD600A3FE19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6E3EA08121B40CD600A3FE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E3EA08321B40CDD00A3FE19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E3EA08621B40CDD00A3FE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +36,8 @@
 		6E3EA08D21B40CDE00A3FE19 /* HGImageLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HGImageLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E3EA09121B40CDE00A3FE19 /* HGImageLibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HGImageLibTests.swift; sourceTree = "<group>"; };
 		6E3EA09321B40CDE00A3FE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E3EA0A121B429B800A3FE19 /* PinboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinboardViewController.swift; sourceTree = "<group>"; };
+		6E3EA0A421B4337700A3FE19 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +79,12 @@
 		6E3EA07B21B40CD600A3FE19 /* HGImageLib */ = {
 			isa = PBXGroup;
 			children = (
-				6E3EA07C21B40CD600A3FE19 /* AppDelegate.swift */,
-				6E3EA07E21B40CD600A3FE19 /* ViewController.swift */,
-				6E3EA08021B40CD600A3FE19 /* Main.storyboard */,
+				6E3EA09E21B4165000A3FE19 /* Models */,
+				6E3EA09D21B4163200A3FE19 /* Views */,
+				6E3EA09F21B4165D00A3FE19 /* ViewControllers */,
 				6E3EA08321B40CDD00A3FE19 /* Assets.xcassets */,
-				6E3EA08521B40CDD00A3FE19 /* LaunchScreen.storyboard */,
-				6E3EA08821B40CDD00A3FE19 /* Info.plist */,
+				6E3EA0A021B4169900A3FE19 /* Support Files */,
+				6E3EA09C21B4160C00A3FE19 /* HGImageLib */,
 			);
 			path = HGImageLib;
 			sourceTree = "<group>";
@@ -94,6 +96,55 @@
 				6E3EA09321B40CDE00A3FE19 /* Info.plist */,
 			);
 			path = HGImageLibTests;
+			sourceTree = "<group>";
+		};
+		6E3EA09C21B4160C00A3FE19 /* HGImageLib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = HGImageLib;
+			sourceTree = "<group>";
+		};
+		6E3EA09D21B4163200A3FE19 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E3EA0A321B4334B00A3FE19 /* Cells */,
+				6E3EA08021B40CD600A3FE19 /* Main.storyboard */,
+				6E3EA08521B40CDD00A3FE19 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		6E3EA09E21B4165000A3FE19 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6E3EA09F21B4165D00A3FE19 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E3EA0A121B429B800A3FE19 /* PinboardViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6E3EA0A021B4169900A3FE19 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6E3EA07C21B40CD600A3FE19 /* AppDelegate.swift */,
+				6E3EA08821B40CDD00A3FE19 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		6E3EA0A321B4334B00A3FE19 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6E3EA0A421B4337700A3FE19 /* ImageCollectionViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +248,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3EA07F21B40CD600A3FE19 /* ViewController.swift in Sources */,
+				6E3EA0A521B4337700A3FE19 /* ImageCollectionViewCell.swift in Sources */,
 				6E3EA07D21B40CD600A3FE19 /* AppDelegate.swift in Sources */,
+				6E3EA0A221B429B800A3FE19 /* PinboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -346,7 +398,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -368,7 +420,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.HGImageLib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -385,7 +437,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.HGImageLib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
